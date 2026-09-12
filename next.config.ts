@@ -1,13 +1,15 @@
 import type { NextConfig } from "next";
 
+const isGithubActions = process.env.GITHUB_ACTIONS || false;
+let repo = 'uni-industry-bridge';
+
 const nextConfig: NextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
   },
-  // Subpath removed for custom domain (rupp.com)
-  basePath: '',
-  assetPrefix: '',
+  basePath: isGithubActions ? `/${repo}` : '',
+  assetPrefix: isGithubActions ? `/${repo}/` : '',
 };
 
 export default nextConfig;
